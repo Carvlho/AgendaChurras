@@ -23,60 +23,49 @@ type ChurrasState = {
   isError: boolean | null;
   isSuccess: boolean;
   errorMessage: string | null;
+  deleteSuccess: boolean;
 };
 
 const initialState: ChurrasState = {
   churras: [],
   isError: null,
   isSuccess: false,
+  deleteSuccess: false,
   errorMessage: null,
 };
 
 export const setChurras = createAsyncThunk(
   "churras/setChurras",
-  async (body: any, thunkAPI) => {
-    try {
-      return { body };
-    } catch (error: any) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
+  (body: any) => {
+    return { body };
+  }
+);
+
+export const deleteChurras = createAsyncThunk(
+  "churras/deleteChurras",
+  (index: number) => {
+    return { index };
   }
 );
 
 export const addContributors = createAsyncThunk(
   "churras/addContributors",
-  async (body: any, thunkAPI) => {
-    try {
-      return { body };
-    } catch (error: any) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
+  (body: any) => {
+    return { body };
   }
 );
 
 export const deleteContributors = createAsyncThunk(
   "churras/deleteContributors",
-  async (body: any, thunkAPI) => {
-    try {
-      return { body };
-    } catch (error: any) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
+  (body: any) => {
+    return { body };
   }
 );
 
 export const setContributorPaied = createAsyncThunk(
   "churras/setContributorPaied",
-  async (body: any, thunkAPI) => {
-    try {
-      return { body };
-    } catch (error: any) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
+  (body: any) => {
+    return { body };
   }
 );
 
@@ -87,6 +76,7 @@ export const churrasSlice = createSlice({
     clearState: (state) => {
       state.isError = false;
       state.isSuccess = false;
+      state.deleteSuccess = false;
       state.errorMessage = null;
 
       return state;
@@ -94,17 +84,23 @@ export const churrasSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(setChurras.fulfilled, (state, { payload }: any) => {
-      console.log(payload);
-
       state.churras = [...state.churras, payload.body];
       state.isSuccess = true;
 
       return state;
     });
 
-    builder.addCase(addContributors.fulfilled, (state, { payload }: any) => {
-      console.log(payload);
+    builder.addCase(deleteChurras.fulfilled, (state, { payload }: any) => {
+      const { index } = payload;
 
+      state.churras.splice(index, 1);
+
+      state.deleteSuccess = true;
+
+      return state;
+    });
+
+    builder.addCase(addContributors.fulfilled, (state, { payload }: any) => {
       const { eventID, name, value, paid } = payload.body;
 
       const id = parseInt(eventID);
@@ -117,8 +113,6 @@ export const churrasSlice = createSlice({
     });
 
     builder.addCase(deleteContributors.fulfilled, (state, { payload }: any) => {
-      console.log(payload);
-
       const { eventID, contributorID } = payload.body;
 
       state.churras[eventID].contributors.splice(contributorID, 1);

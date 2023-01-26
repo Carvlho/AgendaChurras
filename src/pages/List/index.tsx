@@ -15,8 +15,6 @@ export function List() {
 
   const { churras } = useAppSelector(churrasSelector);
 
-  console.log(churras);
-
   const amountRaised = (id: number) => {
     const churrasID = id;
 

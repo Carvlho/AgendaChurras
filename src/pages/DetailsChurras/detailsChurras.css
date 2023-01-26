@@ -203,3 +203,24 @@
   bottom: -3%;
   right: -3%;
 }
+
+.button-delete-event {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 12px;
+  margin: 0;
+
+  border-radius: 50%;
+  border: none;
+  background: #ff0000;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  position: absolute;
+  top: -3%;
+  left: -3%;
+}

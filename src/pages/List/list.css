@@ -22,6 +22,8 @@
   justify-content: center;
   box-sizing: border-box;
 
+  position: relative;
+
   width: 250px;
 
   padding: 25px;

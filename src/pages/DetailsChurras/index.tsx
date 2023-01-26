@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import TrincaLogo from "../../assets/TrincaLogo.svg";
@@ -8,9 +8,13 @@ import IconMoney from "../../assets/IconMoney.svg";
 import { useAppDispatch, useAppSelector } from "../../store";
 import {
   churrasSelector,
+  clearState,
+  deleteChurras,
   deleteContributors,
   setContributorPaied,
 } from "../../store/churras";
+
+import { ModalDeleteEvent } from "../../components/ModalDeleteEvent";
 
 import "./detailsChurras.css";
 
@@ -21,7 +25,7 @@ export function DetailsChurras() {
 
   const dispatch = useAppDispatch();
 
-  const { churras } = useAppSelector(churrasSelector);
+  const { churras, deleteSuccess } = useAppSelector(churrasSelector);
 
   const churrasID = id ? parseInt(id) : 0;
 
@@ -62,16 +66,6 @@ export function DetailsChurras() {
     });
   };
 
-  const [isHovering, setIsHovering] = useState<number | null>(0);
-
-  const handleMouseOver = (index: number) => {
-    setIsHovering(index);
-  };
-
-  const handleMouseOut = () => {
-    setIsHovering(null);
-  };
-
   const deleteContributor = (contributorID: number) => {
     const body = {
       eventID: churrasID,
@@ -79,6 +73,14 @@ export function DetailsChurras() {
     };
 
     dispatch(deleteContributors(body));
+  };
+
+  const [modalDeleteEvent, setModalDeleteEvent] = useState(false);
+
+  const handleDeleteEvent = (index: number) => {
+    dispatch(deleteChurras(index));
+    dispatch(clearState());
+    navigate("/lista-de-churras");
   };
 
   return (
@@ -122,8 +124,6 @@ export function DetailsChurras() {
                     className="card-people"
                     key={index}
                     onClick={() => handlePaied(index, contributor.paid)}
-                    onMouseOver={() => handleMouseOver(index)}
-                    onMouseOut={handleMouseOut}
                   >
                     <div className="card-people_title">
                       <label className="checkboxContainer">
@@ -161,6 +161,13 @@ export function DetailsChurras() {
             </div>
 
             <button
+              className="button-delete-event"
+              onClick={() => setModalDeleteEvent(true)}
+            >
+              <i className="fa-solid fa-trash"></i>
+            </button>
+
+            <button
               className="btn-add-people"
               onClick={() => navigate("adicionar-pessoa")}
             >
@@ -173,6 +180,12 @@ export function DetailsChurras() {
           <img src={TrincaLogo} alt="Trinca Logo" />
         </div>
       </div>
+
+      <ModalDeleteEvent
+        isOpen={modalDeleteEvent}
+        close={() => setModalDeleteEvent(false)}
+        deleteEvent={() => handleDeleteEvent(churrasID)}
+      />
     </div>
   );
 }

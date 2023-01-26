@@ -26,6 +26,11 @@ Projeto criado para marcar um churras 🍖
 
 4. Execute o comando npm dev ou yarn dev para iniciar o projeto
 
+### Credenciais de Login
+
+email: admin@admin.com
+senha: admin
+
 ## Recursos
 
 Criação, edição e exclusão de eventos de churrasco

@@ -241,6 +241,14 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
+    font-size: 0.75rem;
+  }
+
+  .checkboxSpan {
+    width: 18px;
+    height: 18px;
+    top: -7px;
   }
 
   .container-people {

@@ -29,6 +29,7 @@ Projeto criado para marcar um churras 🍖
 ### Credenciais de Login
 
 email: admin@admin.com
+
 senha: admin
 
 ## Recursos

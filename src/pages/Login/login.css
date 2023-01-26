@@ -1,0 +1,20 @@
+.container-background {
+  background: #ffd836 url("../../assets/background.png");
+  background-size: auto 450px;
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+
+  min-height: 70vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+
+  position: relative;
+
+  padding: 70px 30px 120px;
+}

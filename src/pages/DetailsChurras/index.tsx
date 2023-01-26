@@ -23,7 +23,7 @@ export function DetailsChurras() {
 
   const { churras } = useAppSelector(churrasSelector);
 
-  const churrasID = parseInt(id);
+  const churrasID = id ? parseInt(id) : 0;
 
   const currentChurras = churras[churrasID];
 
@@ -39,8 +39,8 @@ export function DetailsChurras() {
 
   const amountRaised = () => {
     const contributors = currentChurras.contributors
-      .filter((contributor) => contributor.paid)
-      .map((contributor) => {
+      .filter((contributor: any) => contributor.paid)
+      .map((contributor: any) => {
         const value = parseFloat(
           contributor.value
             ?.replace(/[R$\s]/g, "")
@@ -52,7 +52,7 @@ export function DetailsChurras() {
       });
 
     const amount = contributors.reduce(
-      (total, item) => total + parseFloat(item),
+      (total: number, item: any) => total + parseFloat(item),
       0
     );
 
@@ -116,46 +116,48 @@ export function DetailsChurras() {
             </div>
 
             <div className="container-people">
-              {currentChurras.contributors.map((contributor, index) => (
-                <div
-                  className="card-people"
-                  key={index}
-                  onClick={() => handlePaied(index, contributor.paid)}
-                  onMouseOver={() => handleMouseOver(index)}
-                  onMouseOut={handleMouseOut}
-                >
-                  <div className="card-people_title">
-                    <label className="checkboxContainer">
-                      <input
-                        type="checkbox"
-                        className="checkboxInput"
-                        disabled
-                        checked={contributor.paid ? true : false}
-                      />
-                      <span className="checkboxSpan"></span>
-                    </label>
-                    <p>{contributor.name}</p>
-                  </div>
-                  <div className="card-people_row">
-                    <p
-                      className={
-                        contributor.paid
-                          ? "card-people_contribution text-line-through"
-                          : "card-people_contribution"
-                      }
-                    >
-                      {contributor.value}
-                    </p>
+              {currentChurras.contributors.map(
+                (contributor: any, index: number) => (
+                  <div
+                    className="card-people"
+                    key={index}
+                    onClick={() => handlePaied(index, contributor.paid)}
+                    onMouseOver={() => handleMouseOver(index)}
+                    onMouseOut={handleMouseOut}
+                  >
+                    <div className="card-people_title">
+                      <label className="checkboxContainer">
+                        <input
+                          type="checkbox"
+                          className="checkboxInput"
+                          disabled
+                          checked={contributor.paid ? true : false}
+                        />
+                        <span className="checkboxSpan"></span>
+                      </label>
+                      <p>{contributor.name}</p>
+                    </div>
+                    <div className="card-people_row">
+                      <p
+                        className={
+                          contributor.paid
+                            ? "card-people_contribution text-line-through"
+                            : "card-people_contribution"
+                        }
+                      >
+                        {contributor.value}
+                      </p>
 
-                    <div
-                      className="button-delete"
-                      onClick={() => deleteContributor(index)}
-                    >
-                      <i className="fa-solid fa-trash"></i>
+                      <div
+                        className="button-delete"
+                        onClick={() => deleteContributor(index)}
+                      >
+                        <i className="fa-solid fa-trash"></i>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              )}
             </div>
 
             <button

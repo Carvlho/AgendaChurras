@@ -18,13 +18,13 @@ export function List() {
   console.log(churras);
 
   const amountRaised = (id: number) => {
-    const churrasID = parseInt(id);
+    const churrasID = id;
 
     const currentChurras = churras[churrasID];
 
     const contributors = currentChurras.contributors
-      .filter((contributor) => contributor.paid)
-      .map((contributor) => {
+      .filter((contributor: any) => contributor.paid)
+      .map((contributor: any) => {
         const value = parseFloat(
           contributor.value
             ?.replace(/[R$\s]/g, "")
@@ -36,7 +36,7 @@ export function List() {
       });
 
     const amount = contributors.reduce(
-      (total, item) => total + parseFloat(item),
+      (total: number, item: any) => total + parseFloat(item),
       0
     );
 

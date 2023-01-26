@@ -19,7 +19,7 @@ type ChurrasState = {
             | [];
         }
       ]
-    | [];
+    | any[];
   isError: boolean | null;
   isSuccess: boolean;
   errorMessage: string | null;

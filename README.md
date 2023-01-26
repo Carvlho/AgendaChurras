@@ -18,13 +18,13 @@ Projeto criado para marcar um churras 🍖
 
 ## Instalação
 
-Faça o clone do repositório com o comando git clone https://github.com/Carvlho/AgendaChurras.git
+1. Faça o clone do repositório com o comando git clone https://github.com/Carvlho/AgendaChurras.git
 
-Entre na pasta do projeto com o comando cd AgendaChurras
+2. Entre na pasta do projeto com o comando cd AgendaChurras
 
-Execute o comando npm install ou yarn install para instalar as dependências
+3. Execute o comando npm install ou yarn install para instalar as dependências
 
-Execute o comando npm dev ou yarn dev para iniciar o projeto
+4. Execute o comando npm dev ou yarn dev para iniciar o projeto
 
 ## Recursos
 

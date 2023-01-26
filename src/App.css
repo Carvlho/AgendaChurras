@@ -130,6 +130,46 @@
   margin-top: 5px;
 }
 
+.container-recommendedValue {
+  display: flex;
+  flex-direction: column;
+}
+.container-recommendedValue h3 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #000000;
+
+  margin: 0 0 10px;
+}
+.container-values {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container-value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.container-value h5 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #000000;
+
+  margin: 0 0 10px;
+}
+.container-value p {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #000000;
+
+  margin: 0;
+}
+
 .button {
   width: 100%;
 

@@ -121,6 +121,21 @@ export function AddPeople() {
               )}
             </div>
 
+            <div className="container-recommendedValue">
+              <h3>Valores Recomendados</h3>
+
+              <div className="container-values">
+                <div className="container-value">
+                  <h5>Valor s/ bebida</h5>
+                  <p>R$ 10,00</p>
+                </div>
+                <div className="container-value">
+                  <h5>Valor c/ bebida</h5>
+                  <p>R$ 20,00</p>
+                </div>
+              </div>
+            </div>
+
             <button className="button" onClick={handleSubmit(handleSavePeople)}>
               Adicionar
             </button>

@@ -45,6 +45,8 @@
   font-size: 1rem;
   font-weight: 800;
   color: #fafafa;
+
+  cursor: pointer;
 }
 .button-modal.confirm {
   background-color: #ff0000;
